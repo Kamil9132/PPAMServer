@@ -4,13 +4,13 @@
 * `HospitalsContainer`
 ```
 {
-	hospitals: Hospital[]
+    hospitals: Hospital[]
 }
 ```
 * `Hospital`
 ```
 {
-	id: string
+    id: string
     name: string
     description: string
     location: Location
@@ -19,7 +19,7 @@
 * `HospitalDetails`
 ```
 {
-	id: string
+    id: string
     name: string
     description: string
     location: Location
@@ -30,14 +30,14 @@
 * `Location`
 ```
 {
-	lat: double
+    lat: double
     lng: double
 }
 ```
 * `Comment`
 ```
 {
-	id: string
+    id: string
     hospitalId: string
     user: string
     comment: string
@@ -47,7 +47,7 @@
 * `Score`
 ```
 {
-	id: ScoreId
+    id: ScoreId
     score: int
     dateUTC: string (date in ISO 8601 format)
 }
@@ -55,7 +55,7 @@
 * `ScoreId`
 ```
 {
-	hospitalId: string
+    hospitalId: string
     user: string
 }
 ```
@@ -117,7 +117,7 @@
     * Example POST Data:
     ```
     {
-    	"user": "User001",
+        "user": "User001",
         "comment": "First"
     }
     ```
