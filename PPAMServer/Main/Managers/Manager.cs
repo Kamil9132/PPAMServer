@@ -45,7 +45,9 @@ namespace PPAMServer.Managers
 		[RequestHandler("/hospital", RequestHeaders.MethodType.Get)]
 		private object OnGetHospitalsRequest(RequestParameters requestParameters, Dictionary<string, string> pathValues)
 		{
-			return db.Hospitals.FindAll();
+			var hospitals = db.Hospitals.FindAll();
+
+			return new HospitalContainer(hospitals);
 		}
 		[RequestHandler("/hospital/{id}", RequestHeaders.MethodType.Get)]
 		private object OnGetHospitalRequest(RequestParameters requestParameters, Dictionary<string, string> pathValues)

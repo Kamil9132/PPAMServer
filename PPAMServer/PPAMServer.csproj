@@ -75,6 +75,7 @@
     <Compile Include="Main\Database\Data\HospitalScore.cs" />
     <Compile Include="Main\Database\Db.cs" />
     <Compile Include="Main\Managers\Data\Hospital.cs" />
+    <Compile Include="Main\Managers\Data\HospitalContainer.cs" />
     <Compile Include="Main\Managers\Data\Response.cs" />
     <Compile Include="Main\Managers\Manager.cs" />
     <Compile Include="PPAMServer.cs" />
