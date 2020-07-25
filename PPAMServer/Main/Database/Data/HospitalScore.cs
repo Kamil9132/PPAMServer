@@ -31,6 +31,7 @@ namespace PPAMServer.Database.Data
 		[BsonId]
 		public Key Id { get; set; }
 		public int Score { get; set; }
+		public string Comment { get; set; }
 		public DateTime DateUTC { get; set; }
 
 		public HospitalScore()
@@ -38,10 +39,11 @@ namespace PPAMServer.Database.Data
 
 		}
 
-		public HospitalScore(Guid hospitalId, string user, int score)
+		public HospitalScore(Guid hospitalId, string user, int score, string comment)
 		{
 			Id = new Key(hospitalId, user);
 			Score = score;
+			Comment = comment;
 			DateUTC = DateTime.UtcNow;
 		}
 	}

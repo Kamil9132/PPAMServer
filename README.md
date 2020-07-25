@@ -34,21 +34,12 @@
     lng: double
 }
 ```
-* `Comment`
-```
-{
-    id: string
-    hospitalId: string
-    user: string
-    comment: string
-    dateUTC: string (date in ISO 8601 format)
-}
-```
 * `Score`
 ```
 {
     id: ScoreId
     score: int
+    comment: string
     dateUTC: string (date in ISO 8601 format)
 }
 ```
@@ -88,6 +79,7 @@
     * POST Parameters:
     	* `user` User id
     	* `score` Integer score
+    	* `comment` Comment, cannot be empty
     * Response: `HospitalDetails`
     * Description:
     ```
@@ -98,26 +90,7 @@
     ```
     {
         "user": "User001",
-        "score": 5
-    }
-    ```
-* `/hospital/{id}/comment`
-	* Method: `POST`
-	* GET Parameters:
-    	* `id` Hospital id
-    * POST Parameters:
-    	* `user` User id
-    	* `comment` Comment, cannot be empty
-    * Response: `HospitalDetails`
-    * Description:
-    ```
-    Add hospital comment
-    Request returns same data as '/hospital/{id}'
-    ```
-    * Example POST Data:
-    ```
-    {
-        "user": "User001",
+        "score": 5,
         "comment": "First"
     }
     ```

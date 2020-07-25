@@ -7,7 +7,6 @@ namespace PPAMServer.Database
 	{
 		public LiteCollection<Hospital> Hospitals { private set; get; }
 		public LiteCollection<HospitalScore> HospitalScores { private set; get; }
-		public LiteCollection<HospitalComment> HospitalComments { private set; get; }
 
 		protected override string GetDatabaseName()
 		{
@@ -18,7 +17,6 @@ namespace PPAMServer.Database
 		{
 			Hospitals = LiteDatabase.GetCollection<Hospital>("Hospitals");
 			HospitalScores = LiteDatabase.GetCollection<HospitalScore>("HospitalScores");
-			HospitalComments = LiteDatabase.GetCollection<HospitalComment>("HospitalComments");
 		}
 
 		public Db(string basePath) : base(basePath)

@@ -71,7 +71,6 @@
     <Compile Include="Core\Operations\ProcessOperations.cs" />
     <Compile Include="Core\Operations\StandardDataOperations.cs" />
     <Compile Include="Main\Database\Data\Hospital.cs" />
-    <Compile Include="Main\Database\Data\HospitalComment.cs" />
     <Compile Include="Main\Database\Data\HospitalScore.cs" />
     <Compile Include="Main\Database\Db.cs" />
     <Compile Include="Main\Managers\Data\Hospital.cs" />

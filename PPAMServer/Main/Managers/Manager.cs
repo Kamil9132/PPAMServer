@@ -37,9 +37,8 @@ namespace PPAMServer.Managers
 			}
 
 			var scores = db.HospitalScores.Find(item => item.Id.HospitalId == hospital.Id);
-			var comments = db.HospitalComments.Find(item => item.HospitalId == hospital.Id);
 
-			return new Hospital(hospital, scores, comments);
+			return new Hospital(hospital, scores);
 		}
 
 		[RequestHandler("/hospital", RequestHeaders.MethodType.Get)]
@@ -69,36 +68,8 @@ namespace PPAMServer.Managers
 			var hospital = GetDatabaseHospital(pathValues);
 
 			if (hospital == null || 
-				!StandardDataOperations.AreKeysInDictionary(postData, new string[] { "user", "score" }) ||
+				!StandardDataOperations.AreKeysInDictionary(postData, new string[] { "user", "score", "comment" }) ||
 				!int.TryParse(postData["score"], out var score))
-			{
-				return errorResponse;
-			}
-
-			var user = postData["user"];
-
-			if (string.IsNullOrEmpty(user))
-			{
-				return errorResponse;
-			}
-
-			var databaseScore = new Database.Data.HospitalScore(hospital.Id, user, score);
-
-			lock (dbLockObject)
-			{
-				db.HospitalScores.Upsert(databaseScore);
-			}
-
-			return GetHospitalData(hospital);
-		}
-
-		[RequestHandler("/hospital/{id}/comment", RequestHeaders.MethodType.Post)]
-		private object OnCreateHospitalCommentRequest(RequestParameters requestParameters, Dictionary<string, string> pathValues)
-		{
-			var postData = requestParameters.PostData.Dictionary;
-			var hospital = GetDatabaseHospital(pathValues);
-
-			if (hospital == null || !StandardDataOperations.AreKeysInDictionary(postData, new string[] { "user", "comment" }))
 			{
 				return errorResponse;
 			}
@@ -111,11 +82,11 @@ namespace PPAMServer.Managers
 				return errorResponse;
 			}
 
-			var databaseComment = new Database.Data.HospitalComment(hospital.Id, user, comment);
+			var databaseScore = new Database.Data.HospitalScore(hospital.Id, user, score, comment);
 
 			lock (dbLockObject)
 			{
-				db.HospitalComments.Upsert(databaseComment);
+				db.HospitalScores.Upsert(databaseScore);
 			}
 
 			return GetHospitalData(hospital);
@@ -156,7 +127,6 @@ namespace PPAMServer.Managers
 			{
 				db.Hospitals.Delete(Query.All());
 				db.HospitalScores.Delete(Query.All());
-				db.HospitalComments.Delete(Query.All());
 
 				foreach (var hospital in hospitals)
 				{
